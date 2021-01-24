@@ -1,21 +1,43 @@
 package nl.eshuis.webpackflow.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@IdClass(nl.eshuis.webpackflow.model.OrderItemId.class)
 @Table (name = "orderitems")
 public class OrderItem implements Serializable {
 
     @Id
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String sourceItemId;
 
     @Id
     @Column(nullable = false)
+    @JsonIgnore
     private String sourceOrderId;
 
+    @ManyToOne
+    @JoinColumn(columnDefinition = "sourceOrderId")
+    private Order order;
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public String getSourceOrderId() {
+        return sourceOrderId;
+    }
+
+    public void setSourceOrderId(String sourceOrderId) {
+        this.sourceOrderId = sourceOrderId;
+    }
 
     public String getSourceItemId() {
         return sourceItemId;
@@ -25,3 +47,4 @@ public class OrderItem implements Serializable {
         this.sourceItemId = sourceItemId;
     }
 }
+
