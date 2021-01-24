@@ -1,6 +1,9 @@
 package nl.eshuis.webpackflow.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name="orders")
@@ -10,29 +13,21 @@ public class Order {
     @Column(nullable = false, unique = true)
     private String sourceOrderId;
 
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private long id;
-//
-//    @Column(name="store_front_id")
-//    private int StoreFrontId ;
+    @OneToMany(
+            targetEntity = OrderItem.class,
+            mappedBy = "sourceOrderId",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.EAGER)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
 
-
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
-//
-//    public int getStoreFrontId() {
-//        return StoreFrontId;
-//    }
-//
-//    public void setStoreFrontId(int storeFrontId) {
-//        StoreFrontId = storeFrontId;
-//    }
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
 
     public String getSourceOrderId() {
         return sourceOrderId;
