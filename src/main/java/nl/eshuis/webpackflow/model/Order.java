@@ -7,30 +7,32 @@ import javax.persistence.*;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column(name="store_front_id")
-    private int StoreFrontId ;
-
-    @Column(name="source_order_id")
+    @Column(nullable = false, unique = true)
     private String sourceOrderId;
 
-    public long getId() {
-        return id;
-    }
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private long id;
+//
+//    @Column(name="store_front_id")
+//    private int StoreFrontId ;
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
-    public int getStoreFrontId() {
-        return StoreFrontId;
-    }
 
-    public void setStoreFrontId(int storeFrontId) {
-        StoreFrontId = storeFrontId;
-    }
+//    public long getId() {
+//        return id;
+//    }
+//
+//    public void setId(long id) {
+//        this.id = id;
+//    }
+//
+//    public int getStoreFrontId() {
+//        return StoreFrontId;
+//    }
+//
+//    public void setStoreFrontId(int storeFrontId) {
+//        StoreFrontId = storeFrontId;
+//    }
 
     public String getSourceOrderId() {
         return sourceOrderId;
