@@ -2,6 +2,7 @@ package nl.eshuis.webpackflow.controller;
 
 import nl.eshuis.webpackflow.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +18,7 @@ public class OrderController {
 
 
     @GetMapping(value = "")
-    public ResponseEntity getOrdersTest () {
-        return ResponseEntity.status(200).body("Orders list");
+    public ResponseEntity<Object> getOrders() {
+        return ResponseEntity.status(200).body(orderservice.getOrders());
     }
-
-//    public ResponseEntity<Object> getOrders() {
-//        return ResponseEntity.ok().body(orderService.getOrders());
-//    }
 }

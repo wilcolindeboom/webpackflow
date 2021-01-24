@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface OrderService {
 
-    List<Order> getOrders();
+    public abstract List<Order> getOrders();
 }
